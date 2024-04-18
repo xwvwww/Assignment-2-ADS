@@ -1,11 +1,6 @@
 import java.util.Iterator;
 
 public class MyLinkedList<T> implements MyList<T> {
-    @Override
-    public Iterator<T> iterator() {
-        return new MyIterator<>();
-    }
-
     private static class MyNode<E> {
         E data;
         MyNode<E> next;
@@ -103,9 +98,10 @@ public class MyLinkedList<T> implements MyList<T> {
     }
 
     @Override
-    public void remove(int index) {
+    public T remove(int index) {
         MyNode<T> node = getNodeAtIndex(index);
         removeNode(node);
+        return null;
     }
 
     @Override
@@ -181,6 +177,11 @@ public class MyLinkedList<T> implements MyList<T> {
     @Override
     public int size() {
         return size;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new MyIterator<>();
     }
 
     @Override

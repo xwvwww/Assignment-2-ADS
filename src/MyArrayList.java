@@ -67,11 +67,22 @@ public class MyArrayList<T> implements MyList<T> {
     }
 
     @Override
-    public void remove(int index) {
+    public T remove(int index) {
         if (index < 0 || index >= size)
             throw new IndexOutOfBoundsException();
-        System.arraycopy(elements, index + 1, elements, index, size - index - 1);
-        elements[--size] = null; // dereference to help garbage collection
+
+        T removedItem = get(index);
+
+        // Shift elements to the left to fill the gap
+        for (int i = index; i < size - 1; i++) {
+            elements[i] = elements[i + 1];
+        }
+
+        // Nullify the reference to the last element
+        elements[size - 1] = null;
+        size--;
+
+        return removedItem;
     }
 
     @Override
@@ -83,7 +94,7 @@ public class MyArrayList<T> implements MyList<T> {
     public void removeLast() {
         if (size == 0)
             throw new IllegalStateException("List is empty");
-        elements[--size] = null;
+        remove(size - 1);
     }
 
     @Override
