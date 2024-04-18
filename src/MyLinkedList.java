@@ -1,8 +1,11 @@
-package src;
-
 import java.util.Iterator;
 
 public class MyLinkedList<T> implements MyList<T> {
+    @Override
+    public Iterator<T> iterator() {
+        return null;
+    }
+
     private static class MyNode<E> {
         E data;
         MyNode<E> next;
@@ -182,7 +185,7 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public MyLinkedList.MyIterator<T> myIterator() {
-        return new MyIterator<>();
+        return (MyIterator<T>) new MyIterator<>();
     }
 
     private MyNode<T> getNodeAtIndex(int index) {
