@@ -3,7 +3,7 @@ import java.util.Iterator;
 public class MyLinkedList<T> implements MyList<T> {
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return new MyIterator<>();
     }
 
     private static class MyNode<E> {
@@ -184,8 +184,8 @@ public class MyLinkedList<T> implements MyList<T> {
     }
 
     @Override
-    public MyLinkedList.MyIterator<T> myIterator() {
-        return (MyIterator<T>) new MyIterator<>();
+    public MyList.MyIterator<T> myIterator() {
+        return new MyIterator<>();
     }
 
     private MyNode<T> getNodeAtIndex(int index) {
@@ -214,7 +214,7 @@ public class MyLinkedList<T> implements MyList<T> {
         size--;
     }
 
-    public class MyIterator<E> implements Iterator<E> {
+    public class MyIterator<E> implements MyList.MyIterator<E> {
         private MyNode<T> cursor = head;
 
         @Override

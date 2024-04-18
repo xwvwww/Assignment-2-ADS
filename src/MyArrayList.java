@@ -1,5 +1,3 @@
-package src;
-
 import java.util.Iterator;
 
 public class MyArrayList<T> implements MyList<T> {
@@ -138,7 +136,12 @@ public class MyArrayList<T> implements MyList<T> {
     }
 
     @Override
-    public MyArrayList.MyIterator<T> myIterator() {
+    public Iterator<T> iterator() {
+        return new MyIterator<>();
+    }
+
+    @Override
+    public MyList.MyIterator<T> myIterator() {
         return new MyIterator<>();
     }
 
@@ -149,7 +152,7 @@ public class MyArrayList<T> implements MyList<T> {
         elements = newArray;
     }
 
-    public class MyIterator<E> implements Iterator<E> {
+    public class MyIterator<E> implements MyList.MyIterator<E> {
         private int cursor;
 
         @Override
