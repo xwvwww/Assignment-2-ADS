@@ -11,6 +11,10 @@ public class MyLinkedList<T> implements MyList<T> {
             this.next = null;
             this.prev = null;
         }
+
+        public E getData() {
+            return data;
+        }
     }
 
     private MyNode<T> head;
@@ -100,8 +104,7 @@ public class MyLinkedList<T> implements MyList<T> {
     @Override
     public T remove(int index) {
         MyNode<T> node = getNodeAtIndex(index);
-        removeNode(node);
-        return null;
+        return removeNode(node);
     }
 
     @Override
@@ -179,6 +182,14 @@ public class MyLinkedList<T> implements MyList<T> {
         return size;
     }
 
+    public MyNode<T> getHead() {
+        return head;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
     @Override
     public Iterator<T> iterator() {
         return new MyIterator<>();
@@ -199,7 +210,7 @@ public class MyLinkedList<T> implements MyList<T> {
         return current;
     }
 
-    private void removeNode(MyNode<T> node) {
+    private T removeNode(MyNode<T> node) {
         if (node == head) {
             head = head.next;
             if (head != null)
@@ -213,6 +224,7 @@ public class MyLinkedList<T> implements MyList<T> {
             node.next.prev = node.prev;
         }
         size--;
+        return node.data;
     }
 
     public class MyIterator<E> implements MyList.MyIterator<E> {
